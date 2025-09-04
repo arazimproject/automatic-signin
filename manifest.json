@@ -1,0 +1,40 @@
+{
+    "name": "Auto Sign-In",
+    "description": "Automatically fill in the ID in TAU moodle sign-in",
+    "version": "1.1",
+    "manifest_version": 3,
+    "icons": {
+        "16": "icon/icon-16.png",
+        "32": "icon/icon-32.png",
+        "48": "icon/icon-48.png",
+        "128": "icon/icon-128.png"
+    },
+    "permissions": ["storage"],
+    "host_permissions": ["https://nidp.tau.ac.il/nidp/*"],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon/icon-32.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://nidp.tau.ac.il/nidp/*"],
+            "js": ["nidp.js"]
+        },
+        {
+            "matches": [
+                "https://www.ims.tau.ac.il/Tal/",
+                "https://www.ims.tau.ac.il/Ac/",
+                "https://iims.tau.ac.il/Tal/",
+                "https://iims.tau.ac.il/Ac/"
+            ],
+            "js": ["ims.js"]
+        },
+        {
+            "matches": ["https://moodle.tau.ac.il/*"],
+            "js": ["moodle.js"]
+        }
+    ]
+}
