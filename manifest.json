@@ -15,9 +15,6 @@
         "default_popup": "popup.html",
         "default_icon": "icon/icon-32.png"
     },
-    "background": {
-        "service_worker": "background.js"
-    },
     "content_scripts": [
         {
             "matches": ["https://nidp.tau.ac.il/nidp/*"],

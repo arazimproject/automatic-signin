@@ -1,18 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Set Login Info</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Sign-In</title>
   <style>
-    body { font-family: sans-serif; width: 250px; padding: 10px; }
-    input { width: 100%; margin: 5px 0; }
+    :root {
+      color-scheme: light;
+      --accent: rgb(79, 101, 34);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color: #1a1b1e;
+      background: #f6f6f6;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      min-height: 100%;
+      background: #f6f6f6;
+    }
+
+    body {
+      width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      line-height: 1.5;
+      background: #f6f6f6;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      min-height: 64px;
+      padding: 12px 20px;
+      color: #ffffff;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    form {
+      margin: 12px;
+      padding: 14px 16px 16px;
+      border-radius: 0.6rem;
+      background: #ffffff;
+      box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
+    }
+
+    .field { margin: 0 0 10px; }
+    .field:last-of-type { margin-bottom: 0; }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+      color: #444444;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #d2d2d2;
+      border-radius: 0.35rem;
+      outline: none;
+      color: #1a1b1e;
+      background: #ffffff;
+      font: inherit;
+      font-size: 13px;
+      transition: border-color 100ms ease, box-shadow 100ms ease;
+    }
+
+    input::placeholder { color: #888888; }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 101, 34, 0.16);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 0.35rem;
+      color: #ffffff;
+      background: var(--accent);
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 100ms ease, box-shadow 100ms ease;
+    }
+
+    button:hover { box-shadow: 0 3px 8px rgba(79, 101, 34, 0.28); transform: scale(1.02); }
+    button:active { transform: scale(0.99); }
+    button:focus-visible { outline: 3px solid rgba(79, 101, 34, 0.3); outline-offset: 2px; }
+
+    @media (prefers-color-scheme: dark) {
+      :root { color-scheme: dark; }
+      html, body { color: #ffffff; background: #1a1b1e; }
+      form { background: #222222; }
+      label { color: #cccccc; }
+      input { border-color: #555555; color: #ffffff; background: #2b2c2f; }
+    }
   </style>
 </head>
 <body>
-  <h3>Login Info</h3>
-  <input id="username" placeholder="Username" />
-  <input id="id" placeholder="ID" />
-  <input id="password" type="password" placeholder="Password" />
-  <button id="save">Save</button>
+  <header class="header">
+    <h1>Auto Sign-In</h1>
+  </header>
+
+  <form id="login-form">
+    <div class="field">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" placeholder="Enter your username" autocomplete="username" required />
+    </div>
+    <div class="field">
+      <label for="id">ID number</label>
+      <input id="id" name="id" type="text" placeholder="Enter your ID number" inputmode="numeric" required />
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required />
+    </div>
+    <button id="save" type="submit">Save login details</button>
+  </form>
 
   <script src="popup.js"></script>
 </body>
